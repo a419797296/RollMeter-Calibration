@@ -1,0 +1,69 @@
+  帧数据标志位错位的情况已经解决了^_^
+
+StartIndex_Real =
+
+     2    24    46    68    90   112
+
+
+StartIndex_Real =
+
+     2    24    46    68    90   112   134   156   178   200   222   244   266   288
+
+Cross!
+
+StartIndex_Real =
+
+    23    45    67    89   111   133   155   177   199   221   243   265   287   309   331
+
+detected!
+
+StartIndex_Real =
+
+     1    23    45    67    89   111   133   155   177   199   221   243   265   287   309   331
+
+
+Last_Serial_Data =
+
+  Columns 1 through 16
+
+    50     7    49     7    49     7    49     7    49     0     0     0     0     0     0     0
+
+  Columns 17 through 20
+
+     0     0     0     0
+
+
+StartIndex_Real =
+
+    13    35    57    79   101   123   145   167   189   211   233   255   277   299
+
+
+Last_Data =
+
+  Columns 1 through 16
+
+    50     7    49     7    49     7    49     7    49     7    50     7    50     7    51     7
+
+  Columns 17 through 20
+
+    50     7    51     7
+
+
+StartIndex_Real =
+
+     2    24    46    68    90   112   134   156   178   200   222   244   266   288   310
+
+
+StartIndex_Real =
+
+     2    24    46    68    90   112   134   156   178   200   222   244   266   288   310
+
+
+StartIndex_Real =
+
+     2    24    46    68    90   112   134   156   178   200   222   244   266   288   310
+
+
+StartIndex_Real =
+
+     2    24    46    68    90   112

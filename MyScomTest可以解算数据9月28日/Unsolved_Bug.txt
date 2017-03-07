@@ -1,0 +1,8 @@
+??? Error using ==> plus
+Matrix dimensions must agree.
+
+Error in ==> serial_communication2>dataDisp1 at 261
+    Last_Data = Last_Serial_Data1 + Last_Serial_Data2 ;   %% Last_Data 即为合并修复后的数据
+
+Error in ==> instrcb at 36
+        feval(val{1}, obj, eventStruct, val{2:end});
