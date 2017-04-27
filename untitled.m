@@ -235,8 +235,13 @@ else
           
           for i=1:N
 %               if receive_data(2*i-1)<=20   %5000最高位为13
-                  ad_value(i)=receive_data(2*i-1)*256+receive_data(2*i)
-                  set(handles.edit7,'string',num2str(ad_value(i)))
+                  ad_value(i)=receive_data(2*i-1)*256+receive_data(2*i);
+                  if ad_value(i)>5000
+                      ad_value(i)=str2double(get(handles.edit7,'string'));
+                  else
+                      set(handles.edit7,'string',num2str(ad_value(i)))
+                  end
+                  
 %               end
           end
           tmp_ad_value=get(handles.edit7,'userdata');
@@ -666,21 +671,27 @@ function save_Callback(hObject, eventdata, handles)
 % hObject    handle to save (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-st=get(handles.step,'string');
-st=str2double(st)*1000;
-
+% st=get(handles.step,'string');
+% st=str2double(st)*1000;
+list=get(handles.real_value,'string');
+value=get(handles.real_value,'value');
+real_value=list{value};
 filepath='./calibration_data.txt';
-row=get(handles.save,'userdata');
-x=st*row;
-row=row+1;
-set(handles.save,'userdata',row);
+% row=get(handles.save,'userdata');
+% x=st*row;
+% row=row+1;
+% set(handles.save,'userdata',row);
 fp = fopen(filepath,'a+');
 if fp==-1
     return
 else
     for i=1:10
         ad_value=get(handles.edit7,'string');
-        fprintf(fp, '%d\t%s\n',x,ad_value);
+        if abs(str2double(real_value)-str2double(ad_value))>250
+            msgbox('实际值与理论值差别较大，请选择正确的实际值再保存，此次保存无效！！')
+            return
+        end
+        fprintf(fp, '%s\t%s\n',real_value,ad_value);
         pause(0.01)
     end
     fclose(fp);
@@ -822,3 +833,26 @@ set(handles.para0,'string',num2str(p(2)))
 % fit_dist=ad_value;
 fit_dist=polyval(p,ad_value);
 plot(ad_value,fit_dist,ad_value,dist-fit_dist,'*')
+
+
+% --- Executes on selection change in real_value.
+function real_value_Callback(hObject, eventdata, handles)
+% hObject    handle to real_value (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns real_value contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from real_value
+
+
+% --- Executes during object creation, after setting all properties.
+function real_value_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to real_value (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
